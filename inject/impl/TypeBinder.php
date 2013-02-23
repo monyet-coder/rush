@@ -26,8 +26,8 @@ class TypeBinder {
     }
     
     public function bindClass(Type $class) {
-        if($class->isAbstract()) {
-            throw BindingException::uninstantiableClass($class);
+        if(!$class->isInstantiable()) {
+            throw BindingException::uninstantiableType($class);
         }
         
         $parameters = array();
@@ -49,7 +49,7 @@ class TypeBinder {
         $key = Key::ofParameter($parameter);
         $node = $this->graph->getNode($key);
         if(empty($node)) {
-            if($key instanceof TypeKey) {
+            if($key instanceof TypeKey) {                
                 $node = $this->bindClassNamed($key->getType());
                 
                 $this->graph->addNode($key, $node);

@@ -14,8 +14,8 @@ class BindingException extends LogicException {
         return new self('Provider method '.$method->class.'::'.$method->name.'() must be static.');
     }
     
-    static public function uninstantiableClass(Type $class) {
-        return new self('Class '.$class->name.' is uninstantiable, maybe you forget to configure it ?');
+    static public function uninstantiableType(Type $class) {
+        return new self('Type '.$class->name.' is uninstantiable, maybe you forget to configure it ?');
     }
     
     static public function unbindableParameter(Parameter $parameter) {
