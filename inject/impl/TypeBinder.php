@@ -50,7 +50,7 @@ class TypeBinder {
         $node = $this->graph->getNode($key);
         if(empty($node)) {
             if($key instanceof TypeKey) {
-                $node = $this->bindClass($key->getType());
+                $node = $this->bindClassNamed($key->getType());
                 
                 $this->graph->addNode($key, $node);
             } else {
